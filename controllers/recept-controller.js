@@ -12,8 +12,18 @@ class ReceptController {
 
     nactiPodleId(req, res, next) {
         try {
-            const{id} = req.body;
+            const{id} = req.params;
             const kategorie = receptService.nactiPodleId(id);
+            res.json(kategorie);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    nactiNahodne(req, res, next) {
+        try {
+            const {idKategorie, limit} = req.query;
+            const kategorie = receptService.nactiNahodne(idKategorie, limit);
             res.json(kategorie);
         } catch (err) {
             next(err);
@@ -22,8 +32,8 @@ class ReceptController {
 
     vloz(req, res, next) {
         try {
-            const {nazev} = req.body;
-            const id = receptService.vloz(nazev);
+            const {idKategorie, nazev, postup} = req.body;
+            const id = receptService.vloz(idKategorie, nazev, postup);
             res.json(id);
         } catch (err) {
             next(err);

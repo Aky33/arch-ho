@@ -4,7 +4,8 @@ const router = Router();
 import kategorieController from '../controllers/kategorie-controller.js';
 
 router.get('/', kategorieController.nactiVse);
-router.post('/', kategorieController.vloz);
 router.get('/:id', kategorieController.nactiPodleId);
+
+router.post('/', kategorieController.vloz);
 
 export default router;

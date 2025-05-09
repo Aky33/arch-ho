@@ -12,7 +12,7 @@ class KategorieController {
 
     nactiPodleId(req, res, next) {
         try {
-            const{id} = req.body;
+            const{id} = req.params;
             const kategorie = kategorieService.nactiPodleId(id);
             res.json(kategorie);
         } catch (err) {

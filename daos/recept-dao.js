@@ -22,6 +22,11 @@ class ReceptDao {
         return db.prepare(sql).get(id);
     }
 
+    nactiPodleIdKategorie(idKategorie) {
+        const sql = `SELECT * FROM recept WHERE idKategorie = ?`;
+        return db.prepare(sql).all(idKategorie);
+    }
+
     vloz(idKategorie, nazev, postup) {
         const sql = `INSERT INTO recept (idKategorie, nazev, postup) VALUES (?, ?, ?)`;
         return db.prepare(sql).run(idKategorie, nazev, postup).lastInsertRowid;
