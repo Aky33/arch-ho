@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const kategorieController = require('./controllers/kategorie-controller');
+
+const kategorieRoute = require('./routes/kategorie-route');
 
 //Middleware na parsování json
 app.use(express.json());
-app.use('/kategorie', kategorieController);
+app.use('/kategorie', kategorieRoute);
 
 app.get('/', (req, res) => {
     res.json({message: `Arch BE domácí úkol`});

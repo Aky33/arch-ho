@@ -1,33 +1,34 @@
-const express = require('express');
-const router = express.Router();
+const kategorieService = require('../services/kategorie-service');
 
-const kategorieDao = require('../daos/kategorie-dao');
-
-router.get('/', (req, res) => {
-    res.json({message: kategorieDao.nactiVse()});
-});
-
-router.post('/', (req, res) => {
-    if (req.body === undefined) {
-        throw new Error("Nevalidní data");
+class KategorieController {
+    nactiVse(req, res, next) {
+        try {
+            const kategorie = kategorieService.nactiVse();
+            res.json(kategorie);
+        } catch (err) {
+            next(err);
+        }
     }
 
-    const {nazev} = req.body;
+    nactiPodleId(req, res, next) {
+        try {
+            const{id} = req.body;
+            const kategorie = kategorieService.nactiPodleId(id);
+            res.json(kategorie);
+        } catch (err) {
+            next(err);
+        }
+    }
 
-    kategorieDao.vloz(nazev);
+    vloz(req, res, next) {
+        try {
+            const {nazev} = req.body;
+            const id = kategorieService.vloz(nazev);
+            res.json(id);
+        } catch (err) {
+            next(err);
+        }
+    }
+}
 
-    res.json({
-        message: `Vložení nové kategorie`,
-        data: nazev
-    });
-});
-
-router.get('/:id', (req, res) => {
-    res.json({message: `Detail kategorie s id:${req.params.id}`});
-});
-
-router.put('/:id', (req, res) => {
-    res.json({message: `Update kategorie`});
-});
-
-module.exports = router;
+module.exports = new KategorieController();
