@@ -1,4 +1,4 @@
-const db = require('../config/db-sqlite');
+import db from '../config/db-sqlite.js';
 
 class KategorieDao {
     constructor() {
@@ -26,4 +26,4 @@ class KategorieDao {
     }
 }
 
-module.exports = new KategorieDao();
+export default new KategorieDao();

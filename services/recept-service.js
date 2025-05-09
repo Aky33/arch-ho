@@ -1,16 +1,16 @@
-import { nactiVse as _nactiVse, nactiPodleId as _nactiPodleId, vloz as _vloz } from '../daos/recept-dao';
+import dao from '../daos/recept-dao.js';
 
 class ReceptService {
     nactiVse() {
-        return _nactiVse();
+        return dao.nactiVse();
     }
 
     nactiPodleId(id) {
-        return _nactiPodleId(id);
+        return dao.nactiPodleId(id);
     }
 
     vloz(nazev) {
-        return _vloz(nazev);
+        return dao.vloz(nazev);
     }
 }
 

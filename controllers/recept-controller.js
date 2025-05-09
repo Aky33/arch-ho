@@ -1,4 +1,4 @@
-const receptService = require('../services/recept-service');
+import receptService from '../services/recept-service.js';
 
 class ReceptController {
     nactiVse(req, res, next) {
@@ -31,4 +31,4 @@ class ReceptController {
     }
 }
 
-module.exports = new ReceptController();
+export default new ReceptController();

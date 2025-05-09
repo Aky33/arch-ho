@@ -1,10 +1,10 @@
 import { Router } from 'express';
 const router = Router();
 
-import { nactiVse, vloz, nactiPodleId } from '../controllers/recept-controller';
+import receptController from '../controllers/recept-controller.js';
 
-router.get('/', nactiVse);
-router.post('/', vloz);
-router.get('/:id', nactiPodleId);
+router.get('/', receptController.nactiVse);
+router.post('/', receptController.vloz);
+router.get('/:id', receptController.nactiPodleId);
 
 export default router;

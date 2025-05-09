@@ -1,4 +1,4 @@
-const kategorieService = require('../services/kategorie-service');
+import kategorieService  from '../services/kategorie-service.js';
 
 class KategorieController {
     nactiVse(req, res, next) {
@@ -31,4 +31,4 @@ class KategorieController {
     }
 }
 
-module.exports = new KategorieController();
+export default new KategorieController();

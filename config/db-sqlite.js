@@ -1,7 +1,12 @@
-const database = require('better-sqlite3');
-const path = require('path');
+import database from 'better-sqlite3';
+import { resolve } from 'path';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const dbPath = path.resolve(__dirname, '../database.sqlite');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const dbPath = resolve(__dirname, '../database.sqlite');
 const db = new database(dbPath);
 
-module.exports = db;
+export default db;

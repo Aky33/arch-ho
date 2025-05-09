@@ -1,11 +1,11 @@
-const db = require('../config/db-sqlite');
+import db from '../config/db-sqlite.js';
 
 class ReceptDao {
     constructor() {
         db.prepare(`
             CREATE TABLE IF NOT EXISTS recept (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                idKategorie INTEGER FOREIGN KEY REFERENCES kategorie(id),
+                idKategorie INTEGER FOREING KEY REFERENCES kategorie(id),
                 nazev TEXT NOT NULL,
                 postup TEXT NULL
             )
@@ -28,4 +28,4 @@ class ReceptDao {
     }
 }
 
-module.exports = new ReceptDao();
+export default new ReceptDao();

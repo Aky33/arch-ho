@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const kategorieController = require('../controllers/kategorie-controller');
+import kategorieController from '../controllers/kategorie-controller.js';
 
 router.get('/', kategorieController.nactiVse);
 router.post('/', kategorieController.vloz);
 router.get('/:id', kategorieController.nactiPodleId);
 
-module.exports = router;
+export default router;

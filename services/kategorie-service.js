@@ -1,4 +1,4 @@
-const dao = require('../daos/kategorie-dao');
+import dao from '../daos/kategorie-dao.js';
 
 class KategorieService {
     nactiVse() {
@@ -14,4 +14,4 @@ class KategorieService {
     }
 }
 
-module.exports = new KategorieService();
+export default new KategorieService();
