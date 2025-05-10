@@ -17,10 +17,10 @@ class ReceptService {
     }
 
     nactiNahodne(idKategorie: number, limit: number): Recept[] {
-        const kategorie = this.nactiPodleIdKategorie(idKategorie);
-        const len = kategorie.length;
+        const recepty = this.nactiPodleIdKategorie(idKategorie);
+        const len = recepty.length;
         if (len <= limit) {
-            return kategorie;
+            return recepty;
         }
 
         const vylosovanaCisla: number[] = [];
@@ -32,7 +32,7 @@ class ReceptService {
             }
 
             vylosovanaCisla.push(nahodneCislo);
-            vysledek.push(kategorie[nahodneCislo]);
+            vysledek.push(recepty[nahodneCislo]);
         }
 
         return vysledek;
