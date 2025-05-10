@@ -19,18 +19,24 @@ class ReceptService {
     nactiNahodne(idKategorie: number, limit: number): Recept[] {
         const recepty = this.nactiPodleIdKategorie(idKategorie);
         const len = recepty.length;
+
+        //pokud je receptů méně nebo stejně jako chtěný limit, nemá smysl pokračovat
         if (len <= limit) {
             return recepty;
         }
 
         const vylosovanaCisla: number[] = [];
-        const vysledek = [];
+        const vysledek: Recept[] = [];
         for (let i = 0; i < limit; i++) {
+            //vylosujeme náhodné číslo v rozmezí počtu receptů
             let nahodneCislo = randomInt(len);
+
+            //kdyby náhodou jsme vylosovily takové, které už je použité losujeme znovu (není to úplně optimální a mělo by jít lépe)
             while (vylosovanaCisla.includes(nahodneCislo)) {
                 nahodneCislo = randomInt(len);
             }
 
+            //vylosované číslo a odpovídající recept si uložíme do separátních polí
             vylosovanaCisla.push(nahodneCislo);
             vysledek.push(recepty[nahodneCislo]);
         }
