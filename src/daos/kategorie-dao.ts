@@ -15,12 +15,12 @@ class KategorieDao {
         return db.prepare(sql).all();
     }
 
-    nactiPodleId(id) {
+    nactiPodleId(id: number) {
         const sql = `SELECT * FROM kategorie WHERE id = ?`;
         return db.prepare(sql).get(id);
     }
 
-    vloz(nazev) {
+    vloz(nazev: string) {
         const sql = `INSERT INTO kategorie (nazev) VALUES (?)`;
         return db.prepare(sql).run(nazev).lastInsertRowid;
     }

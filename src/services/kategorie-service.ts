@@ -5,11 +5,11 @@ class KategorieService {
         return dao.nactiVse();
     }
 
-    nactiPodleId(id) {
+    nactiPodleId(id: number) {
         return dao.nactiPodleId(id);
     }
 
-    vloz(nazev) {
+    vloz(nazev: string) {
         return dao.vloz(nazev);
     }
 }

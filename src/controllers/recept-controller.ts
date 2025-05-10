@@ -1,7 +1,7 @@
 import receptService from '../services/recept-service.js';
 
 class ReceptController {
-    nactiVse(req, res, next) {
+    nactiVse(req: any, res: any, next: any) {
         try {
             const kategorie = receptService.nactiVse();
             res.json(kategorie);
@@ -10,7 +10,7 @@ class ReceptController {
         }
     }
 
-    nactiPodleId(req, res, next) {
+    nactiPodleId(req: any, res: any, next: any) {
         try {
             const{id} = req.params;
             const kategorie = receptService.nactiPodleId(id);
@@ -20,7 +20,7 @@ class ReceptController {
         }
     }
 
-    nactiNahodne(req, res, next) {
+    nactiNahodne(req: any, res: any, next: any) {
         try {
             const {idKategorie, limit} = req.query;
             const kategorie = receptService.nactiNahodne(idKategorie, limit);
@@ -30,7 +30,7 @@ class ReceptController {
         }
     }
 
-    vloz(req, res, next) {
+    vloz(req: any, res: any, next: any) {
         try {
             const {idKategorie, nazev, postup} = req.body;
             const id = receptService.vloz(idKategorie, nazev, postup);

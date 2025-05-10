@@ -1,7 +1,7 @@
 import kategorieService  from '../services/kategorie-service.js';
 
 class KategorieController {
-    nactiVse(req, res, next) {
+    nactiVse(req: any, res: any, next: any) {
         try {
             const kategorie = kategorieService.nactiVse();
             res.json(kategorie);
@@ -10,7 +10,7 @@ class KategorieController {
         }
     }
 
-    nactiPodleId(req, res, next) {
+    nactiPodleId(req: any, res: any, next: any) {
         try {
             const{id} = req.params;
             const kategorie = kategorieService.nactiPodleId(id);
@@ -20,7 +20,7 @@ class KategorieController {
         }
     }
 
-    vloz(req, res, next) {
+    vloz(req: any, res: any, next: any) {
         try {
             const {nazev} = req.body;
             const id = kategorieService.vloz(nazev);

@@ -1,5 +1,6 @@
 import express, { json } from 'express';
 const app = express();
+const port = process.env.PORT || 8080;
 
 import kategorieRoute from './routes/kategorie-route.js';
 import receptRoute from './routes/recept-route.js';
@@ -9,8 +10,6 @@ app.use(json());
 app.use('/kategorie', kategorieRoute);
 app.use('/recepty', receptRoute);
 
-app.get('/', (req, res) => {
-    res.json({message: `Arch BE domácí úkol`});
+app.listen(port, () => {
+    console.log(`Server běží na http://localhost:${port}`);
 });
-
-export default app;

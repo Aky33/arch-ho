@@ -17,17 +17,17 @@ class ReceptDao {
         return db.prepare(sql).all();
     }
 
-    nactiPodleId(id) {
+    nactiPodleId(id: number) {
         const sql = `SELECT * FROM recept WHERE id = ?`;
         return db.prepare(sql).get(id);
     }
 
-    nactiPodleIdKategorie(idKategorie) {
+    nactiPodleIdKategorie(idKategorie: number) {
         const sql = `SELECT * FROM recept WHERE idKategorie = ?`;
         return db.prepare(sql).all(idKategorie);
     }
 
-    vloz(idKategorie, nazev, postup) {
+    vloz(idKategorie: number, nazev: string, postup: string) {
         const sql = `INSERT INTO recept (idKategorie, nazev, postup) VALUES (?, ?, ?)`;
         return db.prepare(sql).run(idKategorie, nazev, postup).lastInsertRowid;
     }

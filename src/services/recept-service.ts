@@ -5,22 +5,22 @@ class ReceptService {
         return dao.nactiVse();
     }
 
-    nactiPodleId(id) {
+    nactiPodleId(id: number) {
         return dao.nactiPodleId(id);
     }
 
-    nactiPodleIdKategorie(idKategorie) {
+    nactiPodleIdKategorie(idKategorie: number) {
         return dao.nactiPodleIdKategorie(idKategorie);
     }
 
-    nactiNahodne(idKategorie, limit) {
+    nactiNahodne(idKategorie: number, limit: number) {
         const kategorie = this.nactiPodleIdKategorie(idKategorie);
         const len = kategorie.length;
         if (len <= limit) {
             return kategorie;
         }
 
-        const vylosovanaCisla = [];
+        const vylosovanaCisla: number[] = [];
         const vysledek = [];
         for (let i = 0; i < limit; i++) {
             let nahodneCislo = randomInt(len);
@@ -35,12 +35,12 @@ class ReceptService {
         return vysledek;
     }
 
-    vloz(idKategorie, nazev, postup) {
+    vloz(idKategorie: number, nazev: string, postup: string) {
         return dao.vloz(idKategorie, nazev, postup);
     }
 }
 
-function randomInt(max) {
+function randomInt(max: number) {
     return Math.floor(Math.random() * max);
 }
 
