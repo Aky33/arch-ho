@@ -1,5 +1,7 @@
 import dao from '../daos/recept-dao.js';
+import { HttpError } from '../models/errors/http-error.js';
 import { Recept } from '../models/recept.js';
+import kategorieService from './kategorie-service.js';
 
 class ReceptService {
     nactiVse(): Recept[] {
@@ -37,6 +39,10 @@ class ReceptService {
     }
 
     vloz(model: Recept): number | bigint {
+        const kategorie = kategorieService.nactiPodleId(model.idKategorie);
+        if (kategorie === undefined) 
+            throw new HttpError(400, "Recept musí mít existujicí kategorii!");
+
         return dao.vloz(model);
     }
 }
