@@ -1,6 +1,8 @@
-class Kategorie {
-    constructor(id, nazev) {
-        this.id = id;
-        this.nazev = nazev;
+export class Kategorie {
+    id!: number;
+    nazev!: string;
+
+    constructor(data: {nazev: string}) {
+        this.nazev = data.nazev;
     }
 }

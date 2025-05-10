@@ -1,3 +1,4 @@
+import { Kategorie } from '../models/kategorie.js';
 import kategorieService  from '../services/kategorie-service.js';
 
 class KategorieController {
@@ -22,8 +23,8 @@ class KategorieController {
 
     vloz(req: any, res: any, next: any) {
         try {
-            const {nazev} = req.body;
-            const id = kategorieService.vloz(nazev);
+            const model = new Kategorie(req.body);
+            const id = kategorieService.vloz(model);
             res.json(id);
         } catch (err) {
             next(err);

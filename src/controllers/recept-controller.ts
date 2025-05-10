@@ -1,4 +1,5 @@
 import receptService from '../services/recept-service.js';
+import { Recept } from '../models/recept.js';
 
 class ReceptController {
     nactiVse(req: any, res: any, next: any) {
@@ -32,8 +33,8 @@ class ReceptController {
 
     vloz(req: any, res: any, next: any) {
         try {
-            const {idKategorie, nazev, postup} = req.body;
-            const id = receptService.vloz(idKategorie, nazev, postup);
+            const model = new Recept(req.body);
+            const id = receptService.vloz(model);
             res.json(id);
         } catch (err) {
             next(err);

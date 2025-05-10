@@ -1,16 +1,17 @@
 import dao from '../daos/kategorie-dao.js';
+import { Kategorie } from '../models/kategorie.js';
 
 class KategorieService {
-    nactiVse() {
+    nactiVse(): Kategorie[] {
         return dao.nactiVse();
     }
 
-    nactiPodleId(id: number) {
+    nactiPodleId(id: number): Kategorie | undefined {
         return dao.nactiPodleId(id);
     }
 
-    vloz(nazev: string) {
-        return dao.vloz(nazev);
+    vloz(model: Kategorie): number | bigint {
+        return dao.vloz(model);
     }
 }
 

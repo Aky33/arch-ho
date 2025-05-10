@@ -1,4 +1,5 @@
 import db from '../config/db-sqlite.js';
+import { Kategorie } from '../models/kategorie.js';
 
 class KategorieDao {
     constructor() {
@@ -10,19 +11,19 @@ class KategorieDao {
         `).run();
     }
 
-    nactiVse() {
+    nactiVse(): Kategorie[] {
         const sql = `SELECT * FROM kategorie`;
-        return db.prepare(sql).all();
+        return db.prepare<Kategorie[], Kategorie>(sql).all();
     }
 
-    nactiPodleId(id: number) {
+    nactiPodleId(id: number): Kategorie | undefined {
         const sql = `SELECT * FROM kategorie WHERE id = ?`;
-        return db.prepare(sql).get(id);
+        return db.prepare<number, Kategorie>(sql).get(id);
     }
 
-    vloz(nazev: string) {
+    vloz(model: Kategorie): number | bigint {
         const sql = `INSERT INTO kategorie (nazev) VALUES (?)`;
-        return db.prepare(sql).run(nazev).lastInsertRowid;
+        return db.prepare(sql).run(model.nazev).lastInsertRowid;
     }
 }
 

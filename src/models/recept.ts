@@ -1,8 +1,12 @@
-class Recept {
-    constructor(id, idKategorie, Nazev, Postup) {
-        this.id = id;
-        this.idKategorie = idKategorie;
-        this.Nazev = Nazev;
-        this.Postup = Postup;
+export class Recept {
+    id!: number;
+    idKategorie!: number;
+    nazev!: string;
+    postup?: string;
+
+    constructor(data: {idKategorie: number, nazev: string, postup: string}) {
+        this.idKategorie = data.idKategorie;
+        this.nazev = data.nazev;
+        this.postup = data.postup;
     }
 }

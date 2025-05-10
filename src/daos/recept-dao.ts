@@ -1,4 +1,5 @@
 import db from '../config/db-sqlite.js';
+import { Recept } from '../models/recept.js';
 
 class ReceptDao {
     constructor() {
@@ -12,24 +13,24 @@ class ReceptDao {
         `).run();
     }
 
-    nactiVse() {
+    nactiVse(): Recept[] {
         const sql = `SELECT * FROM recept`;
-        return db.prepare(sql).all();
+        return db.prepare<Recept[], Recept>(sql).all();
     }
 
-    nactiPodleId(id: number) {
+    nactiPodleId(id: number): Recept | undefined {
         const sql = `SELECT * FROM recept WHERE id = ?`;
-        return db.prepare(sql).get(id);
+        return db.prepare<number, Recept>(sql).get(id);
     }
 
-    nactiPodleIdKategorie(idKategorie: number) {
+    nactiPodleIdKategorie(idKategorie: number): Recept[] {
         const sql = `SELECT * FROM recept WHERE idKategorie = ?`;
-        return db.prepare(sql).all(idKategorie);
+        return db.prepare<number, Recept>(sql).all(idKategorie);
     }
 
-    vloz(idKategorie: number, nazev: string, postup: string) {
+    vloz(model: Recept): number | bigint {
         const sql = `INSERT INTO recept (idKategorie, nazev, postup) VALUES (?, ?, ?)`;
-        return db.prepare(sql).run(idKategorie, nazev, postup).lastInsertRowid;
+        return db.prepare(sql).run(model.idKategorie, model.nazev, model.postup).lastInsertRowid;
     }
 }
 
