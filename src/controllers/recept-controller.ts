@@ -4,8 +4,8 @@ import { Recept } from '../models/recept.js';
 class ReceptController {
     nactiVse(req: any, res: any, next: any) {
         try {
-            const kategorie = receptService.nactiVse();
-            res.json(kategorie);
+            const recepty = receptService.nactiVse();
+            res.json(recepty);
         } catch (err) {
             next(err);
         }
@@ -14,8 +14,8 @@ class ReceptController {
     nactiPodleId(req: any, res: any, next: any) {
         try {
             const{id} = req.params;
-            const kategorie = receptService.nactiPodleId(id);
-            res.json(kategorie);
+            const recepty = receptService.nactiPodleId(id);
+            res.json(recepty);
         } catch (err) {
             next(err);
         }
@@ -24,8 +24,8 @@ class ReceptController {
     nactiNahodne(req: any, res: any, next: any) {
         try {
             const {idKategorie, limit} = req.query;
-            const kategorie = receptService.nactiNahodne(idKategorie, limit);
-            res.json(kategorie);
+            const recepty = receptService.nactiNahodne(idKategorie, limit);
+            res.json(recepty);
         } catch (err) {
             next(err);
         }

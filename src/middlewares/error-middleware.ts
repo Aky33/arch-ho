@@ -1,8 +1,20 @@
-function errorMiddleware(err, req, next) {
-    console.error('Error: ', err);
+import { Request, Response, NextFunction } from "express";
+import { HttpError } from "../models/errors/http-error.js";
 
-    const statusCode = err.status || 500;
-    res.status(statusCode).json({ message: err.message });
+export function errorMiddleware(err: unknown, req: Request, res: Response, next: NextFunction) {
+    //default
+    let status = 500;
+    let message = 'Interní Server Error';
+    
+    if (err instanceof HttpError) {
+        status = err.status;
+        message = err.message;
+    } else if (err instanceof Error) {
+        message = err.message;
+    }
+
+    console.error('Error: ', err);
+    res.status(status).json({ error: { message: message } });
 }
 
 export default errorMiddleware;
