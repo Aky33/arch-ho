@@ -11,7 +11,9 @@ const Layout = ({ children }: LayoutProps) => {
             <header>
                 <nav>
                     <Link to='/' style={{ marginRight: 10}}>Home</Link>
-                    <Link to='/about'>About</Link>
+                    <Link to='/kategorie' style={{ marginRight: 10}}>Kategorie</Link>
+                    <Link to='/recepty' style={{ marginRight: 10}}>Recepty</Link>
+                    <Link to='/recepty/nahodne' style={{ marginRight: 10}}>Náhodný výběr</Link>
                 </nav>
             </header>
             <main>{children}</main>
