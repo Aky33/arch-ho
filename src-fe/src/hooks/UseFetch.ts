@@ -1,33 +1,31 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 export function useFetch<T>(url: string) {
     const [data, setData] = useState<T | null>(null)
-    const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    useEffect(() => {
-        let isMounted = true
-        setLoading(true)
-      
+    const fetchData = useCallback(() => {
         fetch(url)
             .then(res => {
                 if (!res.ok)
                     throw new Error('Network error')
 
-                console.log("res: " + res)
+                console.log(res)
                 return res.json()
             })
             .then(json => { 
-                console.log("json: " + json)
-                return isMounted && setData(json) 
-            })
-            .catch(err => isMounted && setError(err.message))
-            .finally(() => isMounted && setLoading(false))
-
-        return () => {
-            isMounted = false
-        }
+                console.log('Manual fetch:', json)
+                console.log('Raw:', JSON.stringify(json, null, 2))
+                setData(json)
+             })
+            .catch(err => setError(err.message))
     }, [url])
 
-    return {data, loading, error}
+    useEffect(() => {
+        console.log("fetching data")
+
+        fetchData()
+    }, [fetchData])
+
+    return {data, refetch: fetchData, error}
 }

@@ -5,7 +5,7 @@ import type { KategorieType } from "../../types/KategorieType"
 
 const KategorieDetail = () => {
     const params = useParams<{id: string}>()
-    const {data: kategorie, loading, error} = useFetch<KategorieType>('http://localhost:8080/kategorie/' + params.id)
+    const {data: kategorie} = useFetch<KategorieType>('http://localhost:8080/kategorie/' + params.id)
 
     return (
         <div>
