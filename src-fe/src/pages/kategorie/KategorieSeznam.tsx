@@ -24,6 +24,7 @@ const KategorieSeznam = () => {
                 </Card.Header>
                 <Card.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
+                    {kategorie && kategorie.length == 0 && <div>Nic tu není.</div>}
                     {kategorie && <KategorieList kategorie={kategorie!} />}
                 </Card.Body>
                 <Card.Footer>
