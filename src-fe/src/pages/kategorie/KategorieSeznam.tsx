@@ -1,19 +1,54 @@
-import Kategorie from "../../components/Kategorie"
+import { useState } from "react"
+import { Container, Card, Alert, Button, Modal } from "react-bootstrap"
+import { FaPlus } from "react-icons/fa"
+
 import { useFetch } from "../../hooks/UseFetch"
-import type { KategorieType } from "../../types/KategorieType"
+import KategorieFormular from "../../components/KategorieFormular"
+import KategorieList from "../../components/KategorieList"
+
+import type { KategorieOutputType } from "../../types/KategorieOutputType"
 
 const KategorieSeznam = () => {
-    const {data: kategorie, refetch, error} = useFetch<KategorieType[]>('http://localhost:8080/kategorie')
-    console.log("data: " + kategorie)
-    console.log("error: " + error)
-    console.log('Component mounted')
+    const {data: kategorie, refetch, error} = useFetch<KategorieOutputType[]>('http://localhost:8080/kategorie')
+    const [showModal, setShowModal] = useState(false)
+
+    //Musí být specificky napsáno jinak se perou typy
+    const zmakniOtevreniModalu = () => setShowModal(true)
+    const zmakniZavreniModalu = () => setShowModal(false)
 
     return (
-        <div>
-            {kategorie?.map((item, index) => (
-                <Kategorie id={item.id} nazev={item.nazev} />
-            ))}
-        </div>
+        <Container>
+            <Card>
+                <Card.Header>
+                    <Card.Title>Seznam Kategorií</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    {kategorie && <KategorieList kategorie={kategorie!} />}
+                </Card.Body>
+                <Card.Footer>
+                    <div className="d-flex justify-content-end">
+                        <Button onClick={zmakniOtevreniModalu}>
+                            <FaPlus />
+                        </Button>
+                    </div>
+
+                    <Modal show={showModal} onHide={zmakniZavreniModalu}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Vložení nové Kategorie</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <KategorieFormular 
+                                onVlozeni={() => {
+                                    refetch()
+                                    zmakniZavreniModalu()
+                                }} 
+                            />
+                        </Modal.Body>
+                    </Modal>
+                </Card.Footer>
+            </Card>
+        </Container>
     )
 }
 

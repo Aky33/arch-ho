@@ -8,24 +8,15 @@ export function useFetch<T>(url: string) {
         fetch(url)
             .then(res => {
                 if (!res.ok)
-                    throw new Error('Network error')
+                    throw new Error('Síťová chyba')
 
-                console.log(res)
                 return res.json()
             })
-            .then(json => { 
-                console.log('Manual fetch:', json)
-                console.log('Raw:', JSON.stringify(json, null, 2))
-                setData(json)
-             })
+            .then(json => setData(json))
             .catch(err => setError(err.message))
     }, [url])
 
-    useEffect(() => {
-        console.log("fetching data")
-
-        fetchData()
-    }, [fetchData])
+    useEffect(() => fetchData(), [fetchData])
 
     return {data, refetch: fetchData, error}
 }

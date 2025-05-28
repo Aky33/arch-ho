@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 
-import './styles/App.css'
-
 import Layout from './layout/Layout.tsx'
 import KategorieLayout from './layout/KategorieLayout.tsx'
 import ReceptyLayout from './layout/ReceptyLayout.tsx'
