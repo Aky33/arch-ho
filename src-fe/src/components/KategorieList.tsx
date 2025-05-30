@@ -8,7 +8,7 @@ type Props = {
 const KategorieList = ({ kategorie }: Props) => {
     return (
         <div>
-            {kategorie.map((item, index) => (
+            {kategorie.map((item) => (
                 <div>
                     <Link className="btn btn-light mb-1 col-12" to={`/kategorie/${item.id}`}>{item.nazev}</Link>
                 </div>

@@ -25,7 +25,7 @@ const KategorieSeznam = () => {
                 <Card.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
                     {kategorie && kategorie.length == 0 && <div>Nic tu není.</div>}
-                    {kategorie && <KategorieList kategorie={kategorie!} />}
+                    {kategorie && <KategorieList kategorie={kategorie} />}
                 </Card.Body>
                 <Card.Footer>
                     <div className="d-flex justify-content-end">
