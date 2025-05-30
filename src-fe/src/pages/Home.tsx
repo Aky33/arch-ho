@@ -1,9 +1,13 @@
+import { Container } from "react-bootstrap"
+import { Link } from "react-router-dom"
+
 const Home = () => {
     return (
-        <div>
-            <h1>Welcome to My React App</h1>
-            <p>This is the home page.</p>
-        </div>
+        <Container>
+            <Link className="btn btn-light mb-1 pt-4 pb-4 col-12" to={"/kategorie"}>Kategorie</Link>
+            <Link className="btn btn-light mb-1 pt-4 pb-4 col-12" to={"/recepty"}>Recepty</Link>
+            <Link className="btn btn-light mb-1 pt-4 pb-4 col-12" to={"/recepty/nahodne"}>Náhodný výběr</Link>
+        </Container>
     )
 }
 
